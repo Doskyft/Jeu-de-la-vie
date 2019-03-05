@@ -3,15 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jeu_de_la_vie;
+package jeu_de_la_vie.core;
 
 /**
  *
  * @author Girard Emilie / Hebert Damien
  */
 public class LaVie {
-      
-    public void display(final int table[][]) {
+    
+    private static LaVie instance = null; 
+     
+     
+    public static LaVie getInstance() {
+        if( instance != null )
+            return instance;
+        else
+            return ( instance = new LaVie() );
+    }
+    
+    private final int size = 25;
+    private int table[][] = new int[size][size];
+    
+    public int[][] getTable() { return table; }
+    public int getSize() { return size; }
+    
+    public void display() {
         for (final int[] cellules: table) {
             System.out.print("   ");
             for (final int cellule: cellules) {
@@ -26,7 +42,7 @@ public class LaVie {
         }
     }
     
-    public int[][] executionDeLaVie(final int size, final int[][] table) {
+    public void executionDeLaVie() {
         int tableTmp[][] = new int[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -47,11 +63,11 @@ public class LaVie {
                 }
             }
         }
-        return tableTmp;
+        table = tableTmp;
     }
     
     
-    public int[][] a(int[][] table) {
+    public void a() {
         table[8][8] = 1;
         table[7][9] = 1;
         table[7][10] = 1;
@@ -60,27 +76,23 @@ public class LaVie {
         table[9][10] = 1;
         table[9][11] = 1;
         table[8][12] = 1;
-        return table;
     }
     
-    public int[][] b(int[][] table) {
+    public void b() {
         table[8][8] = 1;
         table[9][8] = 1;
         table[9][9] = 1;
         table[8][9] = 1;
-        return table;
     }
     
-    public int[][] c(int[][] table) {
+    public void c() {
         table[8][8] = 1;
         table[9][8] = 1;
         table[10][8] = 1;
-        return table;
     }
     
-    public int[][] d(int[][] table) {
+    public void d() {
         table[8][8] = 1;
         table[10][8] = 1;
-        return table;
     }
 }
