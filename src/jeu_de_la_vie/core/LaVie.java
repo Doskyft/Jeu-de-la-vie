@@ -5,15 +5,19 @@
  */
 package jeu_de_la_vie.core;
 
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
  * @author Girard Emilie / Hebert Damien
  */
-public class LaVie {
+public class LaVie extends Observable {
     
     private static LaVie instance = null; 
-     
-     
+    public ArrayList<Observer> observeurs = new ArrayList();
+    
     public static LaVie getInstance() {
         if( instance != null )
             return instance;
@@ -21,7 +25,7 @@ public class LaVie {
             return ( instance = new LaVie() );
     }
     
-    private final int size = 25;
+    private final int size = 50;
     private int table[][] = new int[size][size];
     
     public int[][] getTable() { return table; }
@@ -64,33 +68,34 @@ public class LaVie {
             }
         }
         table = tableTmp;
+        setChanged();
+        notifyObservers();
     }
-    
     
     public void a() {
-        table[8][8] = 1;
-        table[7][9] = 1;
-        table[7][10] = 1;
-        table[7][11] = 1;
-        table[9][9] = 1;        
-        table[9][10] = 1;
-        table[9][11] = 1;
-        table[8][12] = 1;
+        table[24][22] = 1;
+        
+        table[23][23] = 1;
+        table[23][24] = 1;
+        table[23][25] = 1;
+        
+        table[25][23] = 1;        
+        table[25][24] = 1;
+        table[25][25] = 1;
+        
+        table[24][26] = 1;
     }
-    
     public void b() {
         table[8][8] = 1;
         table[9][8] = 1;
         table[9][9] = 1;
         table[8][9] = 1;
     }
-    
     public void c() {
         table[8][8] = 1;
         table[9][8] = 1;
         table[10][8] = 1;
     }
-    
     public void d() {
         table[8][8] = 1;
         table[10][8] = 1;

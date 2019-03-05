@@ -10,22 +10,21 @@ import jeu_de_la_vie.core.LaVie;
 
 /**
  *
- * @author doskyft
+ * @author Girard Emilie / Hebert Damien
  */
 public class Main {
     
     public static void main(String args[]) throws Exception {
-       new FenetrePrincipale();
+       LaVie.getInstance().a();
+       //LaVie.getInstance().executionDeLaVie();
+
+       new FenetrePrincipale(LaVie.getInstance());
+       
        while(true) {
            LaVie.getInstance().executionDeLaVie();
-           LaVie.getInstance().display();
            sleep(400);
        }
 
-    }
-
-    private static void process() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
